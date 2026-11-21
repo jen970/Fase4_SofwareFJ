@@ -5,6 +5,7 @@
 # +--------------------------------------------------------------------+
 
 from modelos import Cliente, Servicio
+from logger import RegistradorLogs
 from excepciones import (
     DatoInvalidoError,
     ServicioNoDisponibleError,
