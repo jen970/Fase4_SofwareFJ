@@ -12,15 +12,15 @@ class ErrorSistemaFJ(Exception):
     cualquier error propio del sistema de forma centralizada.
     """
 
-    def _init_(self, mensaje: str, codigo_error: str = "ERR-000"):
+    def __init__(self, mensaje: str, codigo_error: str = "ERR-000"):
         # Llama al constructor de la clase Exception con el mensaje descriptivo
-        super()._init_(mensaje)
+        super().__init__(mensaje)
         # Almacena un código identificador único para clasificar el fallo en el log
         self.codigo_error = codigo_error
         # Guarda el texto explicativo del error
         self.mensaje = mensaje
 
-    def _str_(self) -> str:
+    def __str__(self) -> str:
         # Define cómo se mostrará el error al imprimirlo en consola o guardarlo en el log
         return f"[{self.codigo_error}] {self.mensaje}"
 
@@ -31,9 +31,9 @@ class DatoInvalidoError(ErrorSistemaFJ):
     está vacío, es nulo o no cumple con el formato requerido (ej. correo sin '@').
     """
 
-    def _init_(self, mensaje: str):
+    def __init__(self, mensaje: str):
         # Inicializa la excepción padre asignando el código específico de datos inválidos
-        super()._init_(mensaje, codigo_error="ERR-DATO-001")
+        super().__init__(mensaje, codigo_error="ERR-DATO-001")
 
 
 class ServicioNoDisponibleError(ErrorSistemaFJ):
@@ -42,9 +42,9 @@ class ServicioNoDisponibleError(ErrorSistemaFJ):
     equipo o asesoría que ya se encuentra ocupada o inactiva.
     """
 
-    def _init_(self, mensaje: str):
+    def __init__(self, mensaje: str):
         # Inicializa la excepción padre asignando el código de conflicto de disponibilidad
-        super()._init_(mensaje, codigo_error="ERR-DISP-002")
+        super().__init__(mensaje, codigo_error="ERR-DISP-002")
 
 
 class ReservaInvalidaError(ErrorSistemaFJ):
@@ -53,9 +53,9 @@ class ReservaInvalidaError(ErrorSistemaFJ):
     permitida en una reserva (por ejemplo, cancelar una reserva ya cancelada).
     """
 
-    def _init_(self, mensaje: str):
+    def __init__(self, mensaje: str):
         # Inicializa la excepción padre asignando el código de operación de reserva inválida
-        super()._init_(mensaje, codigo_error="ERR-RES-003")
+        super().__init__(mensaje, codigo_error="ERR-RES-003")
 
 
 class CalculoInconsistenteError(ErrorSistemaFJ):
@@ -64,9 +64,9 @@ class CalculoInconsistenteError(ErrorSistemaFJ):
     de tarifas, duración en horas o porcentajes de descuento son negativos o nulos.
     """
 
-    def _init_(self, mensaje: str):
+    def __init__(self, mensaje: str):
         # Inicializa la excepción padre asignando el código de inconsistencia matemática
-        super()._init_(mensaje, codigo_error="ERR-CALC-004")
+        super().__init__(mensaje, codigo_error="ERR-CALC-004")
 
 
 # Bloque de ejecución directa para comprobar el funcionamiento de las excepciones
