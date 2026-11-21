@@ -9,7 +9,7 @@ from datetime import datetime
 class RegistradorLogs:
     """Administra el historial persistente en el archivo registro_sistema.log."""
 
-    def _init_(self, nombre_archivo: str = "registro_sistema.log"):
+    def __init__(self, nombre_archivo: str = "registro_sistema.log"):
         # Define el archivo donde se guardará el historial de auditoría
         self.nombre_archivo = nombre_archivo
 
