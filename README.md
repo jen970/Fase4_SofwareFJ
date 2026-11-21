@@ -24,4 +24,5 @@ Proyecto académico desarrollado para la **Fase 4 del curso de Programación** e
 ## Participación y control de versiones
 El trabajo colaborativo se gestionó mediante ramas y *Pull Requests* en GitHub:
 - **Integrante:** Valerin Sabi Bravo — Implementación de `reservas.py` y `main.py`, actualización de `README.md` y aporte al informe en PDF.
--**Integrante :***Integrante Líder de equipo:* Jennifer Jiménez — Desarrollo de la estructura base del proyecto (excepciones.py, logger.py y Modelos.py), integración de ramas en GitHub 
+-**Integrante :***Integrante Líder de equipo:* Jennifer Jiménez — Desarrollo de la estructura base del proyecto (excepciones.py, logger.py y Modelos.py), integración de ramas en GitHub
+  - **Integrante:** Camilo Andrés Ocampo Ortiz — Corrección de constructores en `excepciones.py`, `logger.py` y `main.py`; ejecución y verificación de las cinco opciones del menú en Google Colab.
