@@ -81,6 +81,10 @@ class Reserva:
             self._servicio.disponible = True
 
         self._estado = "Cancelada"
+        self._logger.registrar(
+            "INFO",
+            f"Reserva {self._id_reserva} cancelada para {self._cliente.nombre}."
+        )        
 
     def obtener_resumen(self) -> str:
         return (
