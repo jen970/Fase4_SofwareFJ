@@ -41,6 +41,7 @@ class Reserva:
             )
 
         self._id_reserva = id_reserva.strip()
+        self._logger = RegistradorLogs()
         self._cliente = cliente
         self._servicio = servicio
         self._horas = horas
