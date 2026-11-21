@@ -22,8 +22,8 @@ def mostrar_menu() -> None:
 class GestorSistema(gestor_.GestorSistema):
     """Implementación concreta del gestor utilizado por la interfaz."""
 
-    def _init_(self, archivo_log: str) -> None:
-        super()._init_(archivo_log)
+    def __init__(self, archivo_log: str) -> None:
+        super().__init__(archivo_log)
         self.archivo_log = archivo_log
         self._registros = []
 
