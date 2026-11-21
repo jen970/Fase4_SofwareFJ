@@ -66,6 +66,11 @@ class Reserva:
         self._servicio.disponible = False
         self._estado = "Confirmada"
 
+        self._logger.registrar(
+    "INFO",
+    f"Reserva {self._id_reserva} confirmada para {self._cliente.nombre}."
+)         
+
     def cancelar(self) -> None:
         if self._estado == "Cancelada":
             raise ReservaInvalidaError(
