@@ -53,6 +53,7 @@ class Reserva:
         return self._estado
 
     def confirmar(self) -> None:
+        #Registra los errores que pueden ocurrir al confirmar una reserva.
         try:
             if self._estado != "Pendiente":
                 raise ReservaInvalidaError(
