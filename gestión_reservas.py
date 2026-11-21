@@ -53,24 +53,32 @@ class Reserva:
         return self._estado
 
     def confirmar(self) -> None:
-        if self._estado != "Pendiente":
-            raise ReservaInvalidaError(
-                "Solo se pueden confirmar reservas pendientes."
+        try:
+            if self._estado != "Pendiente":
+                raise ReservaInvalidaError(
+                    "Solo se pueden confirmar reservas pendientes."
+                )
+
+            if not self._servicio.disponible:
+                raise ServicioNoDisponibleError(
+                    "El servicio seleccionado no está disponible."
+                )
+
+            self._servicio.disponible = False
+            self._estado = "Confirmada"
+
+            self._logger.registrar(
+                "INFO",
+                f"Reserva {self._id_reserva} confirmada para {self._cliente.nombre}."
             )
 
-        if not self._servicio.disponible:
-            raise ServicioNoDisponibleError(
-                "El servicio seleccionado no está disponible."
+        except (ReservaInvalidaError, ServicioNoDisponibleError) as error:
+            self._logger.registrar(
+                "ERROR",
+                f"Error al confirmar reserva {self._id_reserva}: {error}"
             )
-
-        self._servicio.disponible = False
-        self._estado = "Confirmada"
-
-        self._logger.registrar(
-            "INFO",
-            f"Reserva {self._id_reserva} confirmada para {self._cliente.nombre}."
-        )         
-
+            raise
+            
     def cancelar(self) -> None:
         if self._estado == "Cancelada":
             raise ReservaInvalidaError(
