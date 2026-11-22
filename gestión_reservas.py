@@ -81,19 +81,29 @@ class Reserva:
             raise
             
     def cancelar(self) -> None:
-        if self._estado == "Cancelada":
-            raise ReservaInvalidaError(
-                "La reserva ya se encuentra cancelada."
+        # Controla y registra los errores durante la cancelación.
+        try:
+            if self._estado == "Cancelada":
+                raise ReservaInvalidaError(
+                    "La reserva ya se encuentra cancelada."
+                )
+
+            if self._estado == "Confirmada":
+                self._servicio.disponible = True
+
+            self._estado = "Cancelada"
+
+            self._logger.registrar(
+                "INFO",
+                f"Reserva {self._id_reserva} cancelada para {self._cliente.nombre}."
             )
 
-        if self._estado == "Confirmada":
-            self._servicio.disponible = True
-
-        self._estado = "Cancelada"
-        self._logger.registrar(
-            "INFO",
-            f"Reserva {self._id_reserva} cancelada para {self._cliente.nombre}."
-        )        
+        except ReservaInvalidaError as error:
+            self._logger.registrar(
+                "ERROR",
+                f"Error al cancelar reserva {self._id_reserva}: {error}"
+            )
+            raise        
 
     def obtener_resumen(self) -> str:
         return (
