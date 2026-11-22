@@ -106,6 +106,34 @@ class Reserva:
             raise        
 
     def obtener_resumen(self) -> str:
+    def procesar(self) -> str:
+        # Procesa una reserva que ya ha sido confirmada.
+        try:
+            if self._estado != "Confirmada":
+                raise ReservaInvalidaError(
+                    "Solo se pueden procesar reservas confirmadas."
+                )
+
+        except ReservaInvalidaError as error:
+            self._logger.registrar(
+                "ERROR",
+                f"Error al procesar reserva {self._id_reserva}: {error}"
+            )
+            raise
+
+        else:
+            self._logger.registrar(
+                "INFO",
+                f"Reserva {self._id_reserva} procesada correctamente."
+            )
+            return self.generar_comprobante()
+
+        finally:
+            self._logger.registrar(
+                "INFO",
+                f"Finalizó el intento de procesamiento de reserva {self._id_reserva}."
+            )
+            
         return (
             f"Reserva [{self._id_reserva}] - "
             f"Cliente: {self._cliente.nombre} - "
