@@ -74,7 +74,7 @@ def gestionar_clientes_servicios_reservas(clientes, servicios, reservas) -> None
                 id_cliente = input("ID del cliente: ").strip()
                 nombre = input("Nombre completo: ").strip()
                 correo = input("Correo electrónico: ").strip()
-                telefono = input("Teléfono: ").strip()
+                telefono = input("Teléfono: ").strip() or "No registrado"
 
                 if any(c.id_entidad == id_cliente for c in clientes):
                     print("[ERROR] Ya existe un cliente con ese ID.")
