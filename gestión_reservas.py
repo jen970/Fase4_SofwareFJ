@@ -105,8 +105,7 @@ class Reserva:
             )
             raise        
 
-    def obtener_resumen(self) -> str:
-    def procesar(self) -> str:
+        def procesar(self) -> str:
         # Procesa una reserva que ya ha sido confirmada.
         try:
             if self._estado != "Confirmada":
@@ -133,14 +132,15 @@ class Reserva:
                 "INFO",
                 f"Finalizó el intento de procesamiento de reserva {self._id_reserva}."
             )
-            
+
+    def obtener_resumen(self) -> str:
         return (
             f"Reserva [{self._id_reserva}] - "
             f"Cliente: {self._cliente.nombre} - "
             f"Servicio: {self._servicio.nombre_servicio} - "
             f"Estado: {self._estado}"
         )
-
+        
     def generar_comprobante(self) -> str:
         return (
             "+------------------------------------------------------+\n"
